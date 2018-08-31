@@ -4,6 +4,7 @@ var wins = 0;
 var lives = 12;
 var word = [];
 var guessedLetters = [];
+var lettersleft;
 var computerChoice;
 var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var animals = [
@@ -33,6 +34,14 @@ function gameStart() {
     chosenWord.textContent = "[ " + word.join(" ") + " ]";
 }
 
+function correct () {
+    for (var j = 0; j < computerChoice.length; i++) {
+        if (computerChoice[j] === userGuess) {
+            word[j] = userGuess;
+            lettersleft--;
+        }
+    }
+}
 function incorrect() {
     lives--;
     guessedLetters.unshift(" " + userGuess.toUpperCase + " ");
@@ -55,21 +64,47 @@ function resetGame () {
 
 // GAME OPERATIONS
 //======================================================================================================================
-    document.onkeyup = function() {
-    gameStart();
-    document.onkeyup = function(event){
-        userGuess = event.key.toLowerCase();
-        if (alphabet.indexOf(userGuess) >= 0) {
-
-        }
-        else {
-            alert("There are only letters in these words...")
-        }
-
-
+//gameStart();
+ //   while (lettersleft > 0) {
+    winsTally.textContent = "Wins: " + wins;
+    guessesLeft.textContent = "Guesses Remaining " + lives;
+    userGuessLog.textContent = "Guessed Letters: " + guessedLetters;
+    var computerChoice = animals[Math.floor(Math.random() * animals.length)];
+    console.log(computerChoice);
+    var word = [];
+    for (var i = 0; i < computerChoice.length; i++) {
+        word[i] = "_";
+    }
+    var lettersleft = computerChoice.length;
+    console.log(lettersleft);
+    while (lettersleft > 0) {
+    chosenWord.textContent = "[ " + word.join(" ") + " ]";
     }
 
-   };
+        document.onkeyup = function(event){
+            userGuess = event.key.toLowerCase();
+            console.log(userGuess);
+            // Check to make sure that the game player properly enters an actual letter.
+            if (alphabet.indexOf(userGuess) >= 0) {
+                for (var j = 0; j < computerChoice.length; j++) {
+                    if (userGuess === computerChoice[j]) {
+                        word[j] = userGuess;
+                        lettersleft--;
+                    } else {
+                        lives--;
+                        guessedLetters.unshift(" " + userGuess.toUpperCase + " ");
+                    }
+                }
+            }
+            // Reprimands the player if he does not chose a letter.
+            else {
+                alert("There are only letters in these words...")
+            }
+
+
+        };
+
+ //  }
 /*    while (lettersleft > 0) {
         document.onkeyup = function(event) {
            var userGuess = event.key.toLowerCase();
