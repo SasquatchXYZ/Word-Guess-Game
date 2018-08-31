@@ -5,7 +5,7 @@ var lives = 12;
 var word = [];
 var guessedLetters = [];
 var lettersleft;
-var computerChoice;
+/*var computerChoice;*/
 var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var animals = [
     "cat","dog","hippopotamus","rhinoceros","horse","donkey","llama","hoopoe","labradoodle","ostrich"
@@ -17,9 +17,13 @@ var chosenWord = document.getElementById("word-display");
 var guessesLeft = document.getElementById("guesses-left");
 var userGuessLog = document.getElementById("guesses-display");
 
+winsTally.textContent = "Wins: " + wins;
+guessesLeft.textContent = "Guesses Remaining " + lives;
+userGuessLog.textContent = "Guessed Letters: " + guessedLetters;
+
 // FUNCTIONS
 //======================================================================================================================
-function gameStart() {
+/*function gameStart() {
     winsTally.textContent = "Wins: " + wins;
     guessesLeft.textContent = "Guesses Remaining " + lives;
     userGuessLog.textContent = "Guessed Letters: " + guessedLetters;
@@ -32,7 +36,7 @@ function gameStart() {
     var lettersleft = computerChoice.length;
         console.log(lettersleft);
     chosenWord.textContent = "[ " + word.join(" ") + " ]";
-}
+}*/
 
 function correct () {
     for (var j = 0; j < computerChoice.length; i++) {
@@ -64,7 +68,7 @@ function resetGame () {
 
 // GAME OPERATIONS
 //======================================================================================================================
-//gameStart();
+// gameStart();
  //   while (lettersleft > 0) {
     winsTally.textContent = "Wins: " + wins;
     guessesLeft.textContent = "Guesses Remaining " + lives;
@@ -102,7 +106,7 @@ function resetGame () {
             }
 
 
-        };
+        }
 
  //  }
 /*    while (lettersleft > 0) {
