@@ -30,18 +30,50 @@ function gameStart() {
             }
     var lettersleft = computerChoice.length;
         console.log(lettersleft);
-    chosenWord.textContent = "[ " + word + " ]";
+    chosenWord.textContent = "[ " + word.join(" ") + " ]";
+}
 
+function incorrect() {
+    lives--;
+    guessedLetters.unshift(" " + userGuess.toUpperCase + " ");
+}
+function resetGame () {
+    lives = 12;
+    guessedLetters = [];
+    guessesLeft.textContent = "Guesses Remaining " + lives;
+    userGuessLog.textContent = "Guessed Letters: " + guessedLetters;
+    var computerChoice = animals[Math.floor(Math.random() * animals.length)];
+    console.log(computerChoice);
+    var word = [];
+    for (var i = 0; i < computerChoice.length; i++) {
+        word[i] = "_";
+    }
+    var lettersleft = computerChoice.length;
+    console.log(lettersleft);
+    chosenWord.textContent = "[ " + word.join(" ") + " ]";
 }
 
 // GAME OPERATIONS
 //======================================================================================================================
-// document.addEventListener("DOMContentLoaded", function() {
-    document.onkeyup = gameStart();
-    while (lettersleft > 0) {
+    document.onkeyup = function() {
+    gameStart();
+    document.onkeyup = function(event){
+        userGuess = event.key.toLowerCase();
+        if (alphabet.indexOf(userGuess) >= 0) {
+
+        }
+        else {
+            alert("There are only letters in these words...")
+        }
+
+
+    }
+
+   };
+/*    while (lettersleft > 0) {
         document.onkeyup = function(event) {
            var userGuess = event.key.toLowerCase();
 
         }
-    }
-// });
+    }*/
+
