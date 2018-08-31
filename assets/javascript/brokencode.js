@@ -17,18 +17,17 @@ var chosenWord = document.getElementById("word-display");
 var guessesLeft = document.getElementById("guesses-left");
 var userGuessLog = document.getElementById("guesses-display");
 
-/*winsTally.textContent = "Wins: " + wins;
+winsTally.textContent = "Wins: " + wins;
 guessesLeft.textContent = "Guesses Remaining " + lives;
-userGuessLog.textContent = "Guessed Letters: " + guessedLetters;*/
+userGuessLog.textContent = "Guessed Letters: " + guessedLetters;
 
 // FUNCTIONS
 //======================================================================================================================
-function gameStart() {
+/*function gameStart() {
     winsTally.textContent = "Wins: " + wins;
     guessesLeft.textContent = "Guesses Remaining " + lives;
     userGuessLog.textContent = "Guessed Letters: " + guessedLetters;
-}
-/*    var computerChoice = animals[Math.floor(Math.random() * animals.length)];
+    var computerChoice = animals[Math.floor(Math.random() * animals.length)];
         console.log(computerChoice);
         var word = [];
             for (var i = 0; i < computerChoice.length; i++) {
@@ -36,19 +35,8 @@ function gameStart() {
             }
     var lettersleft = computerChoice.length;
         console.log(lettersleft);
-    chosenWord.textContent = "[ " + word.join(" ") + " ]";*/
-
-function pickword() {
-    var computerChoice = animals[Math.floor(Math.random() * animals.length)];
-    console.log(computerChoice);
-    var word = [];
-    for (var i = 0; i < computerChoice.length; i++) {
-        word[i] = "_";
-    }
-    var lettersleft = computerChoice.length;
-    console.log(lettersleft);
     chosenWord.textContent = "[ " + word.join(" ") + " ]";
-}
+}*/
 
 function correct () {
     for (var j = 0; j < computerChoice.length; i++) {
@@ -80,9 +68,11 @@ function resetGame () {
 
 // GAME OPERATIONS
 //======================================================================================================================
-gameStart();
-// pickword();
- //   while (lettersleft > 0) {
+// gameStart();
+//   while (lettersleft > 0) {
+winsTally.textContent = "Wins: " + wins;
+guessesLeft.textContent = "Guesses Remaining " + lives;
+userGuessLog.textContent = "Guessed Letters: " + guessedLetters;
 var computerChoice = animals[Math.floor(Math.random() * animals.length)];
 console.log(computerChoice);
 var word = [];
@@ -91,31 +81,34 @@ for (var i = 0; i < computerChoice.length; i++) {
 }
 var lettersleft = computerChoice.length;
 console.log(lettersleft);
-chosenWord.textContent = "[ " + word.join(" ") + " ]";
+while (lettersleft > 0) {
+    chosenWord.textContent = "[ " + word.join(" ") + " ]";
+}
 
-        document.onkeyup = function(event) {
-            userGuess = event.key.toLowerCase();
-                console.log(userGuess);
-                // Check to make sure that the game player properly enters an actual letter.
-                if (alphabet.indexOf(userGuess) >= 0) {
-                    for (var j = 0; j < computerChoice.length; j++) {
-                        if (userGuess === computerChoice[j]) {
-                            word[j] = userGuess;
-                            lettersleft--;
-                        } else {
-                            lives--;
-                            guessedLetters.unshift(" " + userGuess.toUpperCase + " ");
-                        }
-                    }
-                }
-                // Reprimands the player if he does not chose a letter.
-                else {
-                    alert("There are only letters in these words...")
-                }
+document.onkeyup = function(event){
+    userGuess = event.key.toLowerCase();
+    console.log(userGuess);
+    // Check to make sure that the game player properly enters an actual letter.
+    if (alphabet.indexOf(userGuess) >= 0) {
+        for (var j = 0; j < computerChoice.length; j++) {
+            if (userGuess === computerChoice[j]) {
+                word[j] = userGuess;
+                lettersleft--;
+            } else {
+                lives--;
+                guessedLetters.unshift(" " + userGuess.toUpperCase + " ");
             }
+        }
+    }
+    // Reprimands the player if he does not chose a letter.
+    else {
+        alert("There are only letters in these words...")
+    }
 
 
- //  }
+}
+
+//  }
 /*    while (lettersleft > 0) {
         document.onkeyup = function(event) {
            var userGuess = event.key.toLowerCase();
