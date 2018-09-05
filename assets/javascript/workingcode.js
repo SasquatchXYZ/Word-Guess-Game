@@ -43,7 +43,7 @@ function resetGame () {
 }
 
 function updateHTML() {
-    winsTally.textContent = player + "'s Wins: " + wins;
+    winsTally.textContent = "Wins: " + wins;
     guessesLeft.textContent = "Guesses Remaining " + lives;
     userGuessLog.textContent = "Guessed Letters: " + guessedLetters;
     chosenWord.textContent = "[ " + guessingWord.join(" ") + " ]";
@@ -101,49 +101,39 @@ function incorrect() {
     chosenWord.textContent = "[ " + guessingWord.join(" ") + " ]";
 }
 gameStart();*/
-var player = prompt("Hello! What is your Name?");
-if (player == null || player == "") {
-    player = "Anonymous";
-    alert ("Ooohhh, a Mystery Guest! Welcome! We respect your anonymity.")
-} else {
-    alert ("Welcome to the Zoo " + player + "!");
-}
-
-
 pickword();
 updateHTML();
-    document.onkeyup = function (event) {
-            if (alphabet.indexOf(event.key) >= 0) {
-                userGuess = event.key.toLowerCase();
-                console.log(userGuess);
-                console.log(totalLetters);
-                if ((computerChoice.indexOf(userGuess) > -1) && (totalLetters.indexOf(userGuess) === -1)) {
-                    correct();
-                    updateHTML();
-                    totalLetters.unshift(userGuess);
-                    if (lettersLeft === 0) {
-                        alert("Correct! The word was '" + computerChoice + "'!");
-                        wins++;
-                        pickword();
-                        updateHTML();
-                    } else {
-
-                    }
-                } else if ((computerChoice.indexOf(userGuess) === -1) && (totalLetters.indexOf(userGuess) === -1)) {
-                    incorrect();
-                    updateHTML();
-                    totalLetters.unshift(userGuess);
-                    if (lives === 0) {
-                        alert("Oh no! You used all your guesses... let's try with another animal.");
-                        pickword();
-                        updateHTML();
-                    } else {
-
-                    }
-                } else {
-                    alert("You have already guessed that letter...")
-                }
+document.onkeyup = function (event) {
+    if (alphabet.indexOf(event.key) >= 0) {
+        userGuess = event.key.toLowerCase();
+        console.log(userGuess);
+        console.log(totalLetters);
+        if ((computerChoice.indexOf(userGuess) > -1) && (totalLetters.indexOf(userGuess) === -1)) {
+            correct();
+            updateHTML();
+            totalLetters.unshift(userGuess);
+            if (lettersLeft === 0) {
+                alert("Correct! The word was " + computerChoice + "!");
+                pickword();
+                updateHTML();
             } else {
-                alert("There are only letters in these words...")
+
             }
-    };
+        } else if ((computerChoice.indexOf(userGuess) === -1) && (totalLetters.indexOf(userGuess) === -1)) {
+            incorrect();
+            updateHTML();
+            totalLetters.unshift(userGuess);
+            if (lives === 0) {
+                alert("Oh no! You used all your guesses... here's another word");
+                pickword();
+                updateHTML();
+            } else {
+
+            }
+        } else {
+            alert("You have already guessed that letter...")
+        }
+    } else {
+        alert("There are only letters in these words...")
+    }
+};
