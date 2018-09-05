@@ -11,7 +11,9 @@ var userGuess;
 var lettersLeft;
 var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var animals = [
-    "cat","dog","hippopotamus","rhinoceros","horse","donkey","llama","hoopoe","labradoodle","ostrich"
+    "cat","dog","hippopotamus","rhinoceros","horse","donkey","llama","hoopoe","labradoodle","ostrich","fox","turaco","dove",
+    "deer","frigate","turtle","homero","kangaroo","emu","eagle","horse","tiger","robin","bison","lion","tapir","toucan","takin","thrush",
+    "kouprey","beaver","panda","crane","okapi","condor","yiguirro","manatee","trogon","mouflon","swan","tortoiseshell",
 ];
 /*var gameStarted = false;
 var gameFinished = false;*/
@@ -37,9 +39,7 @@ function resetGame () {
     for (var i = 0; i < computerChoice.length; i++) {
         guessingWord[i] = "_";
     }
-
     updateHTML();
-
 }
 
 function updateHTML() {
@@ -50,15 +50,16 @@ function updateHTML() {
 }
 
 function pickword() {
-    var computerChoice = animals[Math.floor(Math.random() * animals.length)];
+    computerChoice = animals[Math.floor(Math.random() * animals.length)];
     console.log(computerChoice);
-    var guessingWord = [];
+    lettersLeft = computerChoice.length;
+    console.log(lettersLeft);
+
+    guessedLetters = [];
+    guessingWord = [];
     for (var i = 0; i < computerChoice.length; i++) {
         guessingWord[i] = "_";
     }
-    var lettersleft = computerChoice.length;
-    console.log(lettersleft);
-    chosenWord.textContent = "[ " + guessingWord.join(" ") + " ]";
 }
 
 function correct () {
@@ -79,7 +80,7 @@ function incorrect() {
 
 // GAME OPERATIONS
 //======================================================================================================================
-function gameStart() {
+/*function gameStart() {
     computerChoice = animals[Math.floor(Math.random() * animals.length)];
     console.log(computerChoice);
     lettersLeft = computerChoice.length;
@@ -100,7 +101,9 @@ function gameStart() {
     userGuessLog.textContent = "Guessed Letters: " + guessedLetters;
     chosenWord.textContent = "[ " + guessingWord.join(" ") + " ]";
 }
-gameStart();
+gameStart();*/
+pickword();
+updateHTML();
 /*while (lettersLeft > 0) {*/
     document.onkeyup = function (event) {
             if (alphabet.indexOf(event.key) >= 0) {
