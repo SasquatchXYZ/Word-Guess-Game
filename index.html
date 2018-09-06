@@ -2,27 +2,48 @@
 <html lang="en-us">
 <head>
     <meta charset="UTF-8">
-    <title>Hangman</title>
+    <title>Animal Kingdom</title>
 
     <!-- Link to Bootstrap CSS Stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Link to Font Awesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        p, h1, h2, h3, h4, h5, h6 {
+            font-family: Bookman, serif;
+            color: #05cbff;
+        }
+        .card {
+            display: grid;
+            height: 100%;
+        }
+        .card-img {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
+    </style>
 </head>
 
 <body>
-    <h1 class="header">A Friendly Game of Hangman!</h1>
-    <button type="button" class="btn btn-dark"><i class="fas fa-feather-alt"> Let's Play!</i></button>
+<div class="card bg-dark text-white">
+    <img class="card-img" src="assets/images/136501-beautiful-cool-animal-wallpapers-1920x1080-htc.jpg">
+    <div class="card-img-overlay">
+        <h2 class="header">Animal Kingdom</h2>
+        <p class="card-text">
+        <h4 id="instructions">Pick letters to guess the animal...</h4>
         <h6 id="wins-display">Wins: 0</h6>
         <h6 id="word-display"></h6>
         <h6 id="guesses-left">Guesses Remaining: 12</h6>
         <h6 id="guesses-display">Guessed Letters: </h6>
-
-
-
-
-
-    <!--Link to Javascript -->
+        </p>
+    </div>
+</div>
+    <!--Link to Javascript-->
     <script src="assets/javascript/game.js"></script>
 </body>
 

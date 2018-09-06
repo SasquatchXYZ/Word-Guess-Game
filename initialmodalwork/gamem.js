@@ -8,12 +8,13 @@ var livesLeft;                // How many tries the player has left.
 var computerChoice;           // Index of the current word in the array.
 var totalLetters = [];
 var userGuess;
+var player;
 var lettersLeft;
 var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var animals = [
     "cat","dog","hippopotamus","rhinoceros","horse","donkey","llama","hoopoe","labradoodle","ostrich","fox","turaco","dove",
     "deer","frigate","turtle","homero","kangaroo","emu","eagle","horse","tiger","robin","bison","lion","tapir","toucan","takin","thrush",
-    "kouprey","beaver","panda","crane","okapi","condor","yiguirro","manatee","trogon","mouflon","swan","tortoiseshell","swallow","camel","oystercatcher","bear","perch","ladybird","dolphin","quetzal","turul","gyrfalcon","peafowl","cobra","elephant","komodo","partridge","goat","pheasant","streamertail","carp","wagtail","stork","zebu","lemur","aurochs","dodo","xoloitzcuintli","jaguar","grasshopper","vaquita","cow","danphe","godwit","kiwi","oryx","markhor","chukar","crocodile","falcon","leopard","dugong","vicuna","carabao","bison","lynx","wolf","springbok","galjoen","magpie","bull","junglefowl","blackbird","giraffe","bulldog","kite","antelope","wombat","shrike","possum","cockatoo","platypus","kookaburra","koala","kangaroo","hawk","coati","anteater","capybara","egret","owl","raccoon","chickadee","beaver","puffin","caribou","osprey","beluga","grouse","moose","ibis","gaur","blackbuck","squirrel","myna","argus","oriole","monkey","starling","snake","pangolin","ox","donkey","flamingo","sheep","hare","koi","orca","boar","chihuahua","urial","ibex","yak","raven","hedgehog","dormouse","otter","seal","bat","fox"
+    "kouprey","beaver","panda","crane","okapi","condor","yiguirro","manatee","trogon","mouflon","swan","tortoiseshell",
 ];
 /*var gameStarted = false;
 var gameFinished = false;*/
@@ -54,7 +55,7 @@ function pickword() {
     console.log(computerChoice);
     lettersLeft = computerChoice.length;
     console.log(lettersLeft);
-    lives = 10;
+
     totalLetters = [];
     guessedLetters = [];
     guessingWord = [];
@@ -102,48 +103,85 @@ function incorrect() {
 }
 gameStart();*/
 
-var player = prompt("Hello! What is your Name?");
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var modalbtn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// Get the Submit button on the modal
+var submitbtn = document.getElementsByClassName("btn btn-info");
+
+// When the user clicks on the button, open the modal
+modalbtn.onclick = function() {
+    modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+};
+//
+submitbtn.onclick = function() {
+    var player = document.getElementById("inputName");
+    modal.style.display = "none";
+    console.log(player)
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+
+
+/*var player = prompt("Hello! What is your Name?");
 if (player == null || player == "") {
     player = "Anonymous";
     alert ("Ooohhh, a Mystery Guest! Welcome! We respect your anonymity.")
 } else {
-    alert ("Welcome to the Zoo, " + player + "!");
-}
+    alert ("Welcome to the Zoo " + player + "!");
+}*/
+
 
 pickword();
 updateHTML();
-    document.onkeyup = function (event) {
-            if (alphabet.indexOf(event.key) >= 0) {
-                userGuess = event.key.toLowerCase();
-                console.log(userGuess);
-                console.log(totalLetters);
-                if ((computerChoice.indexOf(userGuess) > -1) && (totalLetters.indexOf(userGuess) === -1)) {
-                    correct();
-                    updateHTML();
-                    totalLetters.unshift(userGuess);
-                    if (lettersLeft === 0) {
-                        alert("Correct! The word was '" + computerChoice + "'!");
-                        wins++;
-                        pickword();
-                        updateHTML();
-                    } else {
-
-                    }
-                } else if ((computerChoice.indexOf(userGuess) === -1) && (totalLetters.indexOf(userGuess) === -1)) {
-                    incorrect();
-                    updateHTML();
-                    totalLetters.unshift(userGuess);
-                    if (lives === 0) {
-                        alert("Oh no! You used all your guesses... let's try with another animal.");
-                        pickword();
-                        updateHTML();
-                    } else {
-
-                    }
-                } else {
-                    alert("You have already guessed that letter...")
-                }
+document.onkeyup = function (event) {
+    if (alphabet.indexOf(event.key) >= 0) {
+        userGuess = event.key.toLowerCase();
+        console.log(userGuess);
+        console.log(totalLetters);
+        if ((computerChoice.indexOf(userGuess) > -1) && (totalLetters.indexOf(userGuess) === -1)) {
+            correct();
+            updateHTML();
+            totalLetters.unshift(userGuess);
+            if (lettersLeft === 0) {
+                alert("Correct! The word was '" + computerChoice + "'!");
+                wins++;
+                pickword();
+                updateHTML();
             } else {
-                alert("There are only letters in these words...")
+
             }
-    };
+        } else if ((computerChoice.indexOf(userGuess) === -1) && (totalLetters.indexOf(userGuess) === -1)) {
+            incorrect();
+            updateHTML();
+            totalLetters.unshift(userGuess);
+            if (lives === 0) {
+                alert("Oh no! You used all your guesses... let's try with another animal.");
+                pickword();
+                updateHTML();
+            } else {
+
+            }
+        } else {
+            alert("You have already guessed that letter...")
+        }
+    } else {
+        alert("There are only letters in these words...")
+    }
+};

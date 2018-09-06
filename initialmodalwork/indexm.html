@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>Hangman</title>
+
+    <!-- Link to Bootstrap CSS Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Link to Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+
+<body>
+<style>
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 1rem 1.5rem;
+        width: 24rem;
+        border-radius: 0.5rem;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+</style>
+
+<h1 class="header">A Friendly Game of Hangman!</h1>
+<!--    <button type="button" class="btn btn-dark"><i class="fas fa-feather-alt"> Let's Play</i></button>-->
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Hello!</h3>
+        <form>
+            <div class="form-group">
+                <label for="inputName">What is your name?</label>
+                <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp" placeholder="John Doe">
+            </div>
+            <!--        <p><label>What is your name?</label></p>
+                    <input id="playerName" type="text" onfocus="this.value=''" name="name" maxlength="25">
+                    <br>-->
+            <button type="submit" class="btn btn-info" style="padding-right: 20px; padding-left: 20px">Submit</button>
+        </form>
+        <!--        <div class="submit"><input type="submit" value="Submit"></div>-->
+    </div>
+
+</div>
+<h6 id="wins-display">Wins: 0</h6>
+<h6 id="word-display"></h6>
+<h6 id="guesses-left">Guesses Remaining: 12</h6>
+<h6 id="guesses-display">Guessed Letters: </h6>
+
+
+<!--Link to Javascript-->
+<script src="../assets/javascript/game.js"></script>
+</body>
+
+</html>
