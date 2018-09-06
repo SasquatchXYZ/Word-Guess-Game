@@ -2,47 +2,39 @@
 <html lang="en-us">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Animal Kingdom</title>
 
-    <!-- Link to Bootstrap CSS Stylesheet -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Link to Font Awesome Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        p, h1, h2, h3, h4, h5, h6 {
-            font-family: Bookman, serif;
-            color: #05cbff;
-        }
-        .card {
-            display: grid;
-            height: 100%;
-        }
-        .card-img {
-            max-width: 100%;
-            max-height: 100vh;
-            margin: auto;
-        }
-    </style>
+    <!--Link to CSS Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
 </head>
 
 <body>
-<div class="card bg-dark text-white">
-    <img class="card-img" src="assets/images/136501-beautiful-cool-animal-wallpapers-1920x1080-htc.jpg">
-    <div class="card-img-overlay">
-        <h2 class="header">Animal Kingdom</h2>
-        <p class="card-text">
-        <h4 id="instructions">Pick letters to guess the animal...</h4>
-        <h6 id="wins-display">Wins: 0</h6>
-        <h6 id="word-display"></h6>
-        <h6 id="guesses-left">Guesses Remaining: 12</h6>
-        <h6 id="guesses-display">Guessed Letters: </h6>
-        </p>
+    <h1>Animal Kingdom</h1>
+    <div id="content">
+        <div id="welcome" class="message">Hello!</div>
+        <table>
+            <tr>
+                <td>Animal: </td>
+                <td id="word-display"></td>
+            </tr>
+            <tr>
+                <td>Guesses Remaining: </td>
+                <td id="guesses-left"></td>
+            </tr>
+            <tr>
+                <td>Guessed Letters: </td>
+                <td id="guesses-display"></td>
+            </tr>
+            <tr>
+                <td>Wins: </td>
+                <td id="wins-display"></td>
+            </tr>
+        </table>
     </div>
-</div>
+
     <!--Link to Javascript-->
     <script src="assets/javascript/game.js"></script>
 </body>

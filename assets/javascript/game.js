@@ -4,7 +4,6 @@ var wins = 0;                   // Number of wins the player has accrued.
 var lives = 10;                 // Number of guesses that the player has left.
 var guessingWord = [];          // The word that is being displayed/built on as the player guesses.
 var guessedLetters = [];        // An array to store the letters that the player has guessed.
-var livesLeft;                // How many tries the player has left.
 var computerChoice;           // Index of the current word in the array.
 var totalLetters = [];
 var userGuess;
@@ -15,8 +14,6 @@ var animals = [
     "deer","frigate","turtle","homero","kangaroo","emu","eagle","horse","tiger","robin","bison","lion","tapir","toucan","takin","thrush",
     "kouprey","beaver","panda","crane","okapi","condor","yiguirro","manatee","trogon","mouflon","swan","tortoiseshell","swallow","camel","oystercatcher","bear","perch","ladybird","dolphin","quetzal","turul","gyrfalcon","peafowl","cobra","elephant","komodo","partridge","goat","pheasant","streamertail","carp","wagtail","stork","zebu","lemur","aurochs","dodo","xoloitzcuintli","jaguar","grasshopper","vaquita","cow","danphe","godwit","kiwi","oryx","markhor","chukar","crocodile","falcon","leopard","dugong","vicuna","carabao","bison","lynx","wolf","springbok","galjoen","magpie","bull","junglefowl","blackbird","giraffe","bulldog","kite","antelope","wombat","shrike","possum","cockatoo","platypus","kookaburra","koala","kangaroo","hawk","coati","anteater","capybara","egret","owl","raccoon","chickadee","beaver","puffin","caribou","osprey","beluga","grouse","moose","ibis","gaur","blackbuck","squirrel","myna","argus","oriole","monkey","starling","snake","pangolin","ox","donkey","flamingo","sheep","hare","koi","orca","boar","chihuahua","urial","ibex","yak","raven","hedgehog","dormouse","otter","seal","bat","fox"
 ];
-/*var gameStarted = false;
-var gameFinished = false;*/
 
 // Creating variables that hold the references to the location in the HTML where we want to display things.
 var winsTally = document.getElementById("wins-display");
@@ -26,27 +23,11 @@ var userGuessLog = document.getElementById("guesses-display");
 
 // FUNCTIONS
 //======================================================================================================================
-function resetGame () {
-    livesLeft = lives;
-
-    var computerChoice = animals[Math.floor(Math.random() * animals.length)];
-    console.log(computerChoice);
-    var lettersLeft = computerChoice.length;
-    console.log(lettersLeft);
-
-    guessedLetters = [];
-    guessingWord = [];
-    for (var i = 0; i < computerChoice.length; i++) {
-        guessingWord[i] = "_";
-    }
-    updateHTML();
-}
-
 function updateHTML() {
-    winsTally.textContent = player + "'s Wins: " + wins;
-    guessesLeft.textContent = "Guesses Remaining " + lives;
-    userGuessLog.textContent = "Guessed Letters: " + guessedLetters;
-    chosenWord.textContent = "[ " + guessingWord.join(" ") + " ]";
+    winsTally.textContent = wins;
+    guessesLeft.textContent = lives;
+    userGuessLog.textContent = guessedLetters;
+    chosenWord.textContent = guessingWord.join(" ");
 }
 
 function pickword() {
@@ -79,39 +60,22 @@ function incorrect() {
 
 // GAME OPERATIONS
 //======================================================================================================================
-/*function gameStart() {
-    computerChoice = animals[Math.floor(Math.random() * animals.length)];
-    console.log(computerChoice);
-    lettersLeft = computerChoice.length;
-    console.log(lettersLeft);
-    computerChoiceArray = [];
-    for (var h = 0; h < computerChoice.length; h++) {
-        computerChoiceArray[h] = computerChoice[h];
-    }
-    console.log(computerChoiceArray);
-
-    guessedLetters = [];
-    guessingWord = [];
-    for (var i = 0; i < computerChoice.length; i++) {
-        guessingWord[i] = "_";
-    }
-    winsTally.textContent = "Wins: " + wins;
-    guessesLeft.textContent = "Guesses Remaining " + lives;
-    userGuessLog.textContent = "Guessed Letters: " + guessedLetters;
-    chosenWord.textContent = "[ " + guessingWord.join(" ") + " ]";
-}
-gameStart();*/
-
 var player = prompt("Hello! What is your Name?");
 if (player == null || player == "") {
     player = "Anonymous";
     alert ("Ooohhh, a Mystery Guest! Welcome! We respect your anonymity.")
 } else {
-    alert ("Welcome to the Zoo, " + player + "!");
+    alert ("Welcome to the Animal Kingdom, " + player + "!");
 }
+
+var message = ", please guess letters to solve for the animal...";
+var welcome = player + message;
+var setGreeting = document.getElementById("welcome");
+setGreeting.textContent = welcome;
 
 pickword();
 updateHTML();
+
     document.onkeyup = function (event) {
             if (alphabet.indexOf(event.key) >= 0) {
                 userGuess = event.key.toLowerCase();
@@ -126,8 +90,6 @@ updateHTML();
                         wins++;
                         pickword();
                         updateHTML();
-                    } else {
-
                     }
                 } else if ((computerChoice.indexOf(userGuess) === -1) && (totalLetters.indexOf(userGuess) === -1)) {
                     incorrect();
@@ -137,8 +99,6 @@ updateHTML();
                         alert("Oh no! You used all your guesses... let's try with another animal.");
                         pickword();
                         updateHTML();
-                    } else {
-
                     }
                 } else {
                     alert("You have already guessed that letter...")
