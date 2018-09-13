@@ -4,6 +4,7 @@ var wins = 0;                   // Number of wins the player has accrued.
 var lives = 10;                 // Number of guesses that the player has left.
 var guessingWord = [];          // The word that is being displayed/built on as the player guesses.
 var guessedLetters = [];        // An array to store the letters that the player has guessed.
+
 var computerChoice;           // Index of the current word in the array.
 var totalLetters = [];
 var userGuess;
